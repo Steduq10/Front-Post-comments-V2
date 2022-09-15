@@ -19,8 +19,8 @@ export class PostService {
     return of(post);
   }
 
-  constructor() { }
- /* constructor(private client:HttpClient) { }
+  //constructor() { }
+  constructor(private client:HttpClient) { }
 
   httOptions = {
     headers: new HttpHeaders({'Content-Type':'application/json'})
@@ -39,7 +39,7 @@ export class PostService {
   AddCommentAction(command:AddCommentCommand):Observable<Object>{
     return this.client.post('http://localhost:8080/add/comment', command, this.httOptions)
   //  return this.client.post('https://lit-lake-44610.herokuapp.com/add/comment', command, this.httOptions)
-  }*/
+  }
 
 
 }

@@ -10,21 +10,13 @@ import { CreatePostCommand } from '../post';
   styleUrls: ['./main-posts.component.css']
 })
 export class MainPostsComponent implements OnInit {
-/*  post: Post = {
-    aggregateId: "1",
-    author: "Steven",
-    title: "Testing post",
-    comments: []
 
-
-  }*/
-
-  //posts = POSTS;
   posts: Post[] = [];
   newTitle:string = "";
   newAuthor:string = "";
 
-  //selectedPost?: Post;
+ 
+
 
  // constructor() { }
   constructor(private postService: PostService) { }
@@ -33,16 +25,14 @@ export class MainPostsComponent implements OnInit {
     this.getPosts();
   }
 
-//  onSelect(post: Post): void {
-//    this.selectedPost = post;
-//  }
+
 
   getPosts(): void {
     this.postService.getPosts()
     .subscribe(posts => this.posts = posts);
   }
 
-/*  submitPost(){
+  submitPost(){
     const newCommand: CreatePostCommand = {
       postId: Math.floor(Math.random() * 100000).toString(),
       title: this.newTitle,
@@ -52,6 +42,6 @@ export class MainPostsComponent implements OnInit {
     this.postService.CreatePostAction(newCommand).subscribe()
     this.newTitle = "";
     this.newAuthor = "";
-  }*/
+  }
 
 }
