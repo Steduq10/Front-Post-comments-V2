@@ -2,22 +2,22 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { AddCommentCommand, CreatePostCommand, Post } from './post';
-import {POSTS} from './mock-posts'
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class PostService {
 
-  getPosts(): Observable<Post[]> {
+/*  getPosts(): Observable<Post[]> {
     const posts = of(POSTS);
     return posts;
-  }
+  }*/
 
-  getPost(id: string): Observable<Post> {
-    const post = POSTS.find(h => h.aggregateId === id)!;
+ /* getPost(id: string): Observable<Post> {
+    const post = POST.find(h => h.aggregateId === id)!;
     return of(post);
-  }
+  }*/
 
   //constructor() { }
   constructor(private client:HttpClient) { }

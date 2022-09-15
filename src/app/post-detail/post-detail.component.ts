@@ -16,14 +16,14 @@ export class PostDetailComponent implements OnInit {
   constructor(private route:ActivatedRoute, private postService: PostService, private location: Location) { }
 
   ngOnInit(): void {
-    this.getPost();
+   // this.getPost();
   }
 
-  getPost(): void {
+ /* getPost(): void {
     const id = String(this.route.snapshot.paramMap.get('id'));
     this.postService.getPost(id)
       .subscribe(post => this.post = post);
-  }
+  }*/
 
   goBack(): void {
     this.location.back();
