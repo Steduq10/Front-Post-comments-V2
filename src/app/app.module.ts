@@ -7,16 +7,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainPostsComponent } from './main-posts/main-posts.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
 import { SinglePostComponent } from './single-post/single-post.component';
+import { CommentComponent } from './comment/comment.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainPostsComponent,
     PostDetailComponent,
-    DashboardComponent,
-    SinglePostComponent
+    SinglePostComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,

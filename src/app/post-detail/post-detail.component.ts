@@ -1,9 +1,9 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AddCommentCommand, Post } from '../post';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { PostService } from '../post.service';
-import { PostView, CommentView } from '../postView';
+import { CommentView } from '../postView';
 import { SocketService } from '../post-detail/socket/socket.service';
 import { WebSocketSubject } from 'rxjs/webSocket';
 @Component({
@@ -11,7 +11,7 @@ import { WebSocketSubject } from 'rxjs/webSocket';
   templateUrl: './post-detail.component.html',
   styleUrls: ['./post-detail.component.css']
 })
-export class PostDetailComponent implements OnInit {
+export class PostDetailComponent implements OnInit, OnDestroy {
 
 
   socketManager?:WebSocketSubject<CommentView>;
@@ -27,6 +27,7 @@ export class PostDetailComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPost();
+    this.connectToDetailSpace();
   }
 
   ngOnDestroy():void{
