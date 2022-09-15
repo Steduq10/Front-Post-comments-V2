@@ -1,35 +1,38 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,OnDestroy, OnInit } from '@angular/core';
 import { Post } from '../post';
 import { PostService } from '../post.service';
 import { CreatePostCommand } from '../post';
+import { SocketService } from '../post-detail/socket/socket.service';
+import { WebSocketSubject } from 'rxjs/webSocket';
+import { PostView} from '../postView';
+
 
 @Component({
   selector: 'app-main-posts',
   templateUrl: './main-posts.component.html',
   styleUrls: ['./main-posts.component.css']
 })
-export class MainPostsComponent implements OnInit {
+export class MainPostsComponent implements OnInit, OnDestroy {
 
-  posts: Post[] = [];
+  socketManager?:WebSocketSubject<PostView>;
+  posts?: Post[];
+  //posts?: Post[] = [];
+  //postsView: PostView [] = [];
   newTitle:string = "";
   newAuthor:string = "";
 
-
-
-
- // constructor() { }
-  constructor(private postService: PostService) { }
+  constructor(private postService: PostService, private socket:SocketService) { }
 
   ngOnInit(): void {
     this.getPosts();
+    this.connectToMainSpace()
+  }
+
+  ngOnDestroy():void{
+    this.closeSocketConnection();
   }
 
 
-
-  /*getPosts(): void {
-    this.postService.getPosts()
-    .subscribe(posts => this.posts = posts);
-  }*/
 
   getPosts(){
     this.postService.bringAllPosts().subscribe(payLoad =>{
@@ -38,21 +41,23 @@ export class MainPostsComponent implements OnInit {
     })
   }
 
- /*  getPost(id: string): Post {
-    this.postService.bringAllPosts().subscribe(payload =>{
-      const post = payload.find(h => h.aggregateId === id)!;
-    })
-    return (post);
+  /*getPost(): void {
+    const id = String(this.route.snapshot.paramMap.get('id'));
+    this.postService.bringPostById(id)
+      //this.mainPost.getPost(id)
+      .subscribe(post => this.posts = post);
+
 
   }*/
 
-  createPost(){
+
+ /* createPost(){
     const newPost:CreatePostCommand = {
       postId: (Math.random()* (10000000 - 100000) * 100000).toString(),
       title: this.newTitle,
       author: this.newAuthor
     }
-  }
+  }*/
 
   submitPost(){
     const newCommand: CreatePostCommand = {
@@ -61,21 +66,31 @@ export class MainPostsComponent implements OnInit {
       author: this.newAuthor
     }
 
-
-
     this.postService.CreatePostAction(newCommand).subscribe()
     this.newTitle = "";
     this.newAuthor = "";
   }
-/*  submitPost(command:CreatePostCommand){
-    this.postService.CreatePostAction(command).subscribe()
-  }*/
 
-  addPost(post:Post){
-    this.newAuthor = ''
-    this.newTitle = ''
-    this.posts.unshift(post)
+
+  addPost(post:PostView){
+   // this.newAuthor = ''
+   // this.newTitle = ''
+    this.posts?.unshift(post);
   }
+
+  connectToMainSpace(){
+    this.socketManager = this.socket.connetGeneralPostSpace()
+    this.socketManager.subscribe((message) =>{
+      this.addPost(message)
+    })
+  }
+
+
+  closeSocketConnection(){
+    this.socketManager?.complete()
+  }
+
+
 
 
 

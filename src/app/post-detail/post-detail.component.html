@@ -1,9 +1,20 @@
-<div *ngIf="post">
+<!--<div *ngIf="post">
   <h2>{{post.title | uppercase}} Details</h2>
   <div>author: {{post.author}}</div>
   <div>
     <label for="post-title">Post title: </label>
     <input id="post-title" [(ngModel)]="post.title" placeholder="title">
   </div>
-</div>
+</div>-->
 <button type="button" (click)="goBack()">go back</button>
+
+<div class="insertInfo">
+  <label for="author">Title: </label>
+  <input type="text" [(ngModel)]="newAuthor" placeholder="Author">
+
+  <label for="content">Content: </label>
+  <input name="author" type="text" [(ngModel)]="newContent" placeholder="Content">
+
+  <button type="button" (click)="createComment()">Create Comment</button>
+
+</div>

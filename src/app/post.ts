@@ -1,11 +1,11 @@
-export interface Post {
+export type Post = {
   aggregateId:string,
   author: string,
   title: string,
   comments: CommentType[]
 }
 
-export interface CommentType {
+export type CommentType = {
   id:string,
   postId: string,
   author: string,

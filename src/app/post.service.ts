@@ -41,5 +41,9 @@ export class PostService {
   //  return this.client.post('https://lit-lake-44610.herokuapp.com/add/comment', command, this.httOptions)
   }
 
+  bringPostById(postId: string | null): Observable<Post>{
+    return this.client.get<Post>(`http://localhost:8081/bringpost/${postId}`)
+  }
+
 
 }

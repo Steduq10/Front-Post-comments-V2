@@ -1,10 +1,11 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Post } from '../post';
+import { AddCommentCommand, Post } from '../post';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-
 import { PostService } from '../post.service';
-
+import { PostView, CommentView } from '../postView';
+import { SocketService } from '../post-detail/socket/socket.service';
+import { WebSocketSubject } from 'rxjs/webSocket';
 @Component({
   selector: 'app-post-detail',
   templateUrl: './post-detail.component.html',
@@ -12,21 +13,70 @@ import { PostService } from '../post.service';
 })
 export class PostDetailComponent implements OnInit {
 
-  @Input() post?: Post;
-  constructor(private route:ActivatedRoute, private postService: PostService, private location: Location) { }
+
+  socketManager?:WebSocketSubject<CommentView>;
+
+ // posts?: Post[] = [];
+  post!: Post;
+ // comment: CommentView [] = [];
+  newContent:string = "";
+  newAuthor:string = "";
+
+
+  constructor(private route:ActivatedRoute, private postService: PostService, private location: Location, private socket:SocketService) { }
 
   ngOnInit(): void {
-   // this.getPost();
+    this.getPost();
   }
 
- /* getPost(): void {
-    const id = String(this.route.snapshot.paramMap.get('id'));
-    this.postService.getPost(id)
-      .subscribe(post => this.post = post);
-  }*/
+  ngOnDestroy():void{
+    this.closeSocketConnection();
+  }
+
+  getPost(): void {
+    const id: string|null =(this.route.snapshot.paramMap.get('id'));
+    this.postService.bringPostById(id)
+     .subscribe(post => {
+      this.post = post;
+      this.connectToDetailSpace();
+    });
+
+
+  }
 
   goBack(): void {
     this.location.back();
   }
 
+  addComment(comment:CommentView){
+   // this.newAuthor = ''
+  //  this.newContent = ''
+    this.post.comments.unshift(comment);
+  }
+
+  connectToDetailSpace(){
+    this.socketManager = this.socket.connectToDetailSpace(this.post.aggregateId)
+    this.socketManager.subscribe((message) =>{
+      this.addComment(message)
+    })
+  }
+
+
+  closeSocketConnection(){
+    this.socketManager?.complete()
+  }
+
+  createComment(){
+    const newCommand: AddCommentCommand = {
+      postId: this.post.aggregateId,
+      commentId: Math.floor(Math.random() * 100000).toString(),
+      author: this.newAuthor,
+      content: this.newContent
+    }
+
+    this.postService.AddCommentAction(newCommand).subscribe()
+    this.newAuthor = "";
+    this.newContent = "";
+
+  }
 }

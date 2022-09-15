@@ -9,32 +9,22 @@
   <button type="button" (click)="submitPost()">Create POST</button>
 
 </div>
+<div class=main-container>
+  <div class="post-container"*ngIf="posts">
+    <div class="single-post-container" *ngFor="let post of posts">
+      <!--<app-single-post [postView] = "post"></app-single-post>-->
 
-<div class="post-container"*ngIf="posts">
-  <div class="single-post-container" *ngFor="let post of posts">
-    <!--<app-single-post [postView] = "post"></app-single-post>-->
+      <div class="single-post-content">
+        <h3 class="post-title">Title: {{post.title}}</h3>
+            <p class="post-author"> Author: {{post.author}}</p>
+            <a routerLink="/detail/{{post.aggregateId}}">
+              <span class="author">Go Inside!</span>
+            </a>
 
-    <div class="single-post-content">
-      <h3 class="post-title">Title: {{post.title}}</h3>
-          <p class="post-author"> Author: {{post.author}}</p>
-          <a routerLink="/detail/{{post.aggregateId}}">
-            <span class="author">Go Inside!</span>
-          </a>
-
+    </div>
   </div>
 
-
-
 </div>
-<!--<h2>My Post</h2>
-<ul class="post">
-  <li *ngFor="let post of posts">
 
-    <a routerLink="/detail/{{post.aggregateId}}">
-      <span class="author">{{post.title}}</span>
-
-    </a>
-  </li>
-</ul>-->
 
 

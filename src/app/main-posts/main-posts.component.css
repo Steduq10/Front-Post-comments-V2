@@ -63,3 +63,73 @@
 .hposts .author {
   align-self: center;
 }
+
+.main-container{
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 40px 0;
+}
+
+.post-container{
+  /* display: flex;
+   gap: 20px;
+   width: 100%;
+   flex-wrap: wrap;*/
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr;
+   gap: 20px;
+ }
+
+ .single-post-container{
+   border-radius: 10px;
+   min-height: 200px;
+   padding: 20px;
+   position: relative;
+   background-size: cover;
+   background-position: center center;
+   background-color: #D4E6F1 ;
+
+
+ }
+
+
+ .author {
+  flex: 1;
+  cursor: pointer;
+  position:relative;
+  left: 0;
+  background-color: #EEE;
+  margin: .5em;
+  padding: 0;
+  border-radius: 4px;
+  display: flex;
+  align-items:center;
+  height: 1.8em;
+}
+
+.author:hover {
+  color: #2c3a41;
+  background-color: #e6e6e6;
+  left: .1em;
+}
+
+.author:active {
+  background-color: #525252;
+  color: #fafafa;
+}
+
+.author.selected {
+  background-color: black;
+  color: white;
+}
+
+.author.selected:hover {
+  background-color: #505050;
+  color: white;
+}
+
+.author.selected:active {
+  background-color: black;
+  color: white;
+}
