@@ -1,0 +1,25 @@
+
+<div class="insertInfo">
+  <label for="title">Title: </label>
+  <input type="text" [(ngModel)]="newTitle" placeholder="Title">
+
+  <label for="author">Author: </label>
+  <input name="author" type="text" [(ngModel)]="newAuthor" placeholder="Author">
+
+ <!-- <button type="button" (click)="submitPost()">Create POST</button>-->
+
+</div>
+
+
+<h2>My Post</h2>
+<ul class="post">
+  <li *ngFor="let post of posts">
+   <!-- <button [class.selected]="post === selectedPost" type="button" (click)="onSelect(post)">-->
+    <a routerLink="/detail/{{post.aggregateId}}">
+      <span class="author">{{post.author}}</span>
+    <!--</button >-->
+    </a>
+  </li>
+</ul>
+
+<!--<app-post-detail [post]="selectedPost"></app-post-detail>-->
