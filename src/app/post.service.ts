@@ -9,6 +9,8 @@ import { AddCommentCommand, CreatePostCommand, Post } from './post';
 })
 export class PostService {
 
+  LOGIN_URL='http://localhost:8080/auth/login'
+
   constructor(private client:HttpClient) { }
 
   httOptions = {
@@ -20,20 +22,41 @@ export class PostService {
     return this.client.get<Post[]>('https://vast-hollows-77135.herokuapp.com/bringallposts');
   }
 
-  CreatePostAction(command:CreatePostCommand):Observable<Object>{
+  CreatePostAction(command:CreatePostCommand, token:string):Observable<Object>{
    // return this.client.post('http://localhost:8080/create/post', command, this.httOptions)
    return this.client.post('https://sheltered-shelf-22817.herokuapp.com/create/post', command, this.httOptions);
   }
 
   AddCommentAction(command:AddCommentCommand):Observable<Object>{
-    //return this.client.post('http://localhost:8080/add/comment', command, this.httOptions)
-    return this.client.post('https://sheltered-shelf-22817.herokuapp.com/add/comment', command, this.httOptions)
+    //return this.client.post('http://localhost:8080/add/comment', command, {headers: new HttpHeaders({
+   //   'Content-Type': 'application/json',
+   //   'Authorization': 'Bearer ${token}'
+  //  })})
+    return this.client.post('https://sheltered-shelf-22817.herokuapp.com/add/comment', command, {headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ${token}'
+    })})
   }
 
   bringPostById(postId: string | null): Observable<Post>{
    // return this.client.get<Post>(`http://localhost:8081/bringpost/${postId}`)
     return this.client.get<Post>(`https://vast-hollows-77135.herokuapp.com/bringpost/${postId}`)
   }
+
+  login(command:any){
+    //return this.client.post('http://localhost:8080/auth/login', command, this.httOptions)
+    return this.client.post('https://sheltered-shelf-22817.herokuapp.com/auth/login', command, this.httOptions)
+
+  }
+
+ /* private handleError<T>(operation = 'operation', result?: T){
+    return(error:any):Observable<T> => {
+        console.error(error);
+
+        console.log(`${operation} failed: ${error.message}`);
+    }
+
+  }*/
 
 
 }

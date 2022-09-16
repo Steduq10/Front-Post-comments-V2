@@ -1,11 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AddCommentCommand, Post } from '../post';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { PostService } from '../post.service';
 import { CommentView } from '../postView';
 import { SocketService } from '../post-detail/socket/socket.service';
 import { WebSocketSubject } from 'rxjs/webSocket';
+import { StateService } from '../state/state.service';
 @Component({
   selector: 'app-post-detail',
   templateUrl: './post-detail.component.html',
@@ -23,15 +24,34 @@ export class PostDetailComponent implements OnInit, OnDestroy {
   newAuthor:string = "";
 
 
-  constructor(private route:ActivatedRoute, private postService: PostService, private location: Location, private socket:SocketService) { }
+  constructor(private route:ActivatedRoute, private postService: PostService,
+     private location: Location, private socket:SocketService, private state:StateService,
+     private router:Router) { }
 
   ngOnInit(): void {
-    this.getPost();
-    this.connectToDetailSpace();
+    if(this.validateLogin()){
+      this.getPost();
+   // this.connectToDetailSpace();
+    }
+
   }
 
   ngOnDestroy():void{
     this.closeSocketConnection();
+  }
+
+  validateLogin():boolean{
+    let validationResult = false;
+    this.state.state.subscribe(currentState =>{
+      
+      if(!currentState.logedIn){
+        this.router.navigateByUrl('/login')
+        validationResult = false
+        return
+      }
+      validationResult = true
+    })
+    return validationResult;
   }
 
   getPost(): void {

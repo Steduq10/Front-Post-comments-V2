@@ -5,6 +5,8 @@ import { CreatePostCommand } from '../post';
 import { SocketService } from '../post-detail/socket/socket.service';
 import { WebSocketSubject } from 'rxjs/webSocket';
 import { PostView} from '../postView';
+import { StateService } from '../state/state.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -21,17 +23,37 @@ export class MainPostsComponent implements OnInit, OnDestroy {
   newTitle:string = "";
   newAuthor:string = "";
 
-  constructor(private postService: PostService, private socket:SocketService) { }
+  availableState:any;
+
+  constructor(private postService: PostService, private socket:SocketService, private state:StateService,
+    private router:Router) { }
 
   ngOnInit(): void {
-    this.getPosts();
+    if(this.validateLogin()){
+      this.getPosts();
     this.connectToMainSpace()
+    }
   }
 
   ngOnDestroy():void{
     this.closeSocketConnection();
   }
 
+
+  validateLogin():boolean{
+    let validationResult = false;
+    this.state.state.subscribe(currentState =>{
+      console.log(currentState);
+      this.availableState = currentState;
+      if(!currentState.logedIn){
+        this.router.navigateByUrl('/login')
+        validationResult = false
+        return
+      }
+      validationResult = true
+    })
+    return validationResult;
+  }
 
 
   getPosts(){
@@ -41,24 +63,7 @@ export class MainPostsComponent implements OnInit, OnDestroy {
     })
   }
 
-  /*getPost(): void {
-    const id = String(this.route.snapshot.paramMap.get('id'));
-    this.postService.bringPostById(id)
-      //this.mainPost.getPost(id)
-      .subscribe(post => this.posts = post);
-
-
-  }*/
-
-
- /* createPost(){
-    const newPost:CreatePostCommand = {
-      postId: (Math.random()* (10000000 - 100000) * 100000).toString(),
-      title: this.newTitle,
-      author: this.newAuthor
-    }
-  }*/
-
+/*
   submitPost(){
     const newCommand: CreatePostCommand = {
       postId: Math.floor(Math.random() * 100000).toString(),
@@ -69,8 +74,20 @@ export class MainPostsComponent implements OnInit, OnDestroy {
     this.postService.CreatePostAction(newCommand).subscribe()
     this.newTitle = "";
     this.newAuthor = "";
+  }*/
+
+  createPost(){
+    const newPost: CreatePostCommand = {
+      postId: Math.floor(Math.random() * 100000).toString(),
+      title: this.newTitle,
+      author: this.newAuthor
+    }
+    this.submitPosts(newPost, this.availableState.token);
   }
 
+  submitPosts(command:CreatePostCommand, token: string){
+    this.postService.CreatePostAction(command, token).subscribe()
+  }
 
   addPost(post:PostView){
    // this.newAuthor = ''
