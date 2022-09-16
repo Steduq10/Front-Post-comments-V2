@@ -19,12 +19,12 @@ export class PostService {
 
   bringAllPosts(): Observable<Post[]>{
    // return this.client.get<Post[]>('http://localhost:8081/bringallposts');
-    return this.client.get<Post[]>('https://vast-hollows-77135.herokuapp.com/bringallposts');
+    return this.client.get<Post[]>('https://fathomless-dawn-53000.herokuapp.com/bringallposts');
   }
 
   CreatePostAction(command:CreatePostCommand, token:string):Observable<Object>{
    // return this.client.post('http://localhost:8080/create/post', command, this.httOptions)
-   return this.client.post('https://sheltered-shelf-22817.herokuapp.com/create/post', command, this.httOptions);
+   return this.client.post('https://whispering-citadel-25448.herokuapp.com/create/post', command, this.httOptions);
   }
 
   AddCommentAction(command:AddCommentCommand):Observable<Object>{
@@ -32,7 +32,7 @@ export class PostService {
    //   'Content-Type': 'application/json',
    //   'Authorization': 'Bearer ${token}'
   //  })})
-    return this.client.post('https://sheltered-shelf-22817.herokuapp.com/add/comment', command, {headers: new HttpHeaders({
+    return this.client.post('https://whispering-citadel-25448.herokuapp.com/add/comment', command, {headers: new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': 'Bearer ${token}'
     })})
@@ -40,12 +40,12 @@ export class PostService {
 
   bringPostById(postId: string | null): Observable<Post>{
    // return this.client.get<Post>(`http://localhost:8081/bringpost/${postId}`)
-    return this.client.get<Post>(`https://vast-hollows-77135.herokuapp.com/bringpost/${postId}`)
+    return this.client.get<Post>(`https://fathomless-dawn-53000.herokuapp.com/bringpost/${postId}`)
   }
 
   login(command:any){
     //return this.client.post('http://localhost:8080/auth/login', command, this.httOptions)
-    return this.client.post('https://sheltered-shelf-22817.herokuapp.com/auth/login', command, this.httOptions)
+    return this.client.post('https://whispering-citadel-25448.herokuapp.com/auth/login', command, this.httOptions)
 
   }
 
