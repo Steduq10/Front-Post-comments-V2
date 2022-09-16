@@ -1,11 +1,4 @@
-<!--<div *ngIf="post">
-  <h2>{{post.title | uppercase}} Details</h2>
-  <div>author: {{post.author}}</div>
-  <div>
-    <label for="post-title">Post title: </label>
-    <input id="post-title" [(ngModel)]="post.title" placeholder="title">
-  </div>
-</div>-->
+
 <button type="button" (click)="goBack()">go back</button>
 
 <div class="insertInfo">
@@ -19,7 +12,7 @@
 
 </div>
 
-<!-- div *ngIf="post?.comments">
+ <div *ngIf="post?.comments">
   <div *ngFor="let comment of post?.comments">
       <div class="card" style="width: 18rem;">
           <div class="card-body">
@@ -27,4 +20,4 @@
           </div>
       </div>
   </div>
-</div>-->
+</div>

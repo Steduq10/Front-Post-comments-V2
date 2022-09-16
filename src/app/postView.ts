@@ -12,7 +12,6 @@ export type CommentView = {
   id: string,
   postId: string,
   author: string,
-  title: string,
   content: string
 }
 

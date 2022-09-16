@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable} from 'rxjs';
 import { AddCommentCommand, CreatePostCommand, Post } from './post';
 
 
@@ -9,17 +9,6 @@ import { AddCommentCommand, CreatePostCommand, Post } from './post';
 })
 export class PostService {
 
-/*  getPosts(): Observable<Post[]> {
-    const posts = of(POSTS);
-    return posts;
-  }*/
-
- /* getPost(id: string): Observable<Post> {
-    const post = POST.find(h => h.aggregateId === id)!;
-    return of(post);
-  }*/
-
-  //constructor() { }
   constructor(private client:HttpClient) { }
 
   httOptions = {
@@ -33,12 +22,12 @@ export class PostService {
 
   CreatePostAction(command:CreatePostCommand):Observable<Object>{
     return this.client.post('http://localhost:8080/create/post', command, this.httOptions)
-  // return this.client.post('https://lit-lake-44610.herokuapp.com/create/post', command, this.httOptions);
+  // return this.client.post('https://sheltered-shelf-22817.herokuapp.com/create/post', command, this.httOptions);
   }
 
   AddCommentAction(command:AddCommentCommand):Observable<Object>{
     return this.client.post('http://localhost:8080/add/comment', command, this.httOptions)
-  //  return this.client.post('https://lit-lake-44610.herokuapp.com/add/comment', command, this.httOptions)
+  //  return this.client.post('https://sheltered-shelf-22817.herokuapp.com/add/comment', command, this.httOptions)
   }
 
   bringPostById(postId: string | null): Observable<Post>{

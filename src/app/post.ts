@@ -14,8 +14,8 @@ export type CommentType = {
 
 export type CreatePostCommand = {
   postId: string,
-  author: string,
-  title: string
+  title: string,
+  author: string
 }
 
 export type AddCommentCommand = {

@@ -7,7 +7,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainPostsComponent } from './main-posts/main-posts.component';
 import { PostDetailComponent } from './post-detail/post-detail.component';
-import { SinglePostComponent } from './single-post/single-post.component';
 import { CommentComponent } from './comment/comment.component';
 
 @NgModule({
@@ -15,7 +14,6 @@ import { CommentComponent } from './comment/comment.component';
     AppComponent,
     MainPostsComponent,
     PostDetailComponent,
-    SinglePostComponent,
     CommentComponent
   ],
   imports: [

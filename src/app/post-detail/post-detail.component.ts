@@ -16,9 +16,9 @@ export class PostDetailComponent implements OnInit, OnDestroy {
 
   socketManager?:WebSocketSubject<CommentView>;
 
- // posts?: Post[] = [];
+
   post!: Post;
- // comment: CommentView [] = [];
+
   newContent:string = "";
   newAuthor:string = "";
 
@@ -50,8 +50,8 @@ export class PostDetailComponent implements OnInit, OnDestroy {
   }
 
   addComment(comment:CommentView){
-   // this.newAuthor = ''
-  //  this.newContent = ''
+    this.newAuthor = ''
+    this.newContent = ''
     this.post.comments.unshift(comment);
   }
 
