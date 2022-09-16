@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist/frontend",
+    "public": "dist/front-posts-comments-v2",
     "ignore": [
       "firebase.json",
       "**/.*",

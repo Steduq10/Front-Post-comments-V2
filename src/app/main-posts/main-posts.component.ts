@@ -29,10 +29,9 @@ export class MainPostsComponent implements OnInit, OnDestroy {
     private router:Router) { }
 
   ngOnInit(): void {
-    if(this.validateLogin()){
-      this.getPosts();
+   // if(this.validateLogin()){}
+    this.getPosts();
     this.connectToMainSpace()
-    }
   }
 
   ngOnDestroy():void{

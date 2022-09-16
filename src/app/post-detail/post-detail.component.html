@@ -1,6 +1,8 @@
 
 <button type="button" (click)="goBack()">go back</button>
 
+<ng-container *ngIf="!!post"> <h2>{{ post.title }}</h2></ng-container>
+
 <div class="insertInfo">
   <label for="author">Title: </label>
   <input type="text" [(ngModel)]="newAuthor" placeholder="Author">

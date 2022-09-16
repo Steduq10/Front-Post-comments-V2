@@ -1,5 +1,5 @@
 export type Post = {
-  aggregateId:string,
+  id:string,
   author: string,
   title: string,
   comments: CommentType[]

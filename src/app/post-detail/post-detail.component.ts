@@ -29,10 +29,9 @@ export class PostDetailComponent implements OnInit, OnDestroy {
      private router:Router) { }
 
   ngOnInit(): void {
-    if(this.validateLogin()){
-      this.getPost();
-   // this.connectToDetailSpace();
-    }
+   // if(this.validateLogin()){}
+
+    this.getPost();
 
   }
 
@@ -43,7 +42,7 @@ export class PostDetailComponent implements OnInit, OnDestroy {
   validateLogin():boolean{
     let validationResult = false;
     this.state.state.subscribe(currentState =>{
-      
+
       if(!currentState.logedIn){
         this.router.navigateByUrl('/login')
         validationResult = false
@@ -76,7 +75,7 @@ export class PostDetailComponent implements OnInit, OnDestroy {
   }
 
   connectToDetailSpace(){
-    this.socketManager = this.socket.connectToDetailSpace(this.post.aggregateId)
+    this.socketManager = this.socket.connectToDetailSpace(this.post.id)
     this.socketManager.subscribe((message) =>{
       this.addComment(message)
     })
@@ -89,7 +88,7 @@ export class PostDetailComponent implements OnInit, OnDestroy {
 
   createComment(){
     const newCommand: AddCommentCommand = {
-      postId: this.post.aggregateId,
+      postId: this.post.id,
       commentId: Math.floor(Math.random() * 100000).toString(),
       author: this.newAuthor,
       content: this.newContent

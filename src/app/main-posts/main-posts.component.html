@@ -18,7 +18,7 @@
       <div class="single-post-content">
         <h3 class="post-title">Title: {{post.title}}</h3>
             <p class="post-author"> Author: {{post.author}}</p>
-            <a routerLink="/detail/{{post.aggregateId}}">
+            <a [routerLink]="['detail', post.id]">
               <span class="author">Go Inside!</span>
 
             </a>

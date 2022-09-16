@@ -1,7 +1,7 @@
 
 
 export type PostView = {
-  aggregateId: string,
+  id: string,
   author: string,
   title: string,
   comments: CommentView[]
