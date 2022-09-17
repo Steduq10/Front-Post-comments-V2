@@ -11,7 +11,7 @@ export class SocketService {
 
   connetGeneralPostSpace(): WebSocketSubject<PostView>{
    // return webSocket('ws://localhost:8082/retrieve/mainSpace')
-    return webSocket('WSS://tranquil-bayou-17075.herokuapp.com/retrieve/mainSpace')
+   return webSocket('WSS://tranquil-bayou-17075.herokuapp.com/retrieve/mainSpace')
   }
 
 
