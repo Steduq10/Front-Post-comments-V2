@@ -29,9 +29,12 @@ export class PostDetailComponent implements OnInit, OnDestroy {
      private router:Router) { }
 
   ngOnInit(): void {
-   // if(this.validateLogin()){}
+    if(this.validateLogin()){
 
+    }
     this.getPost();
+
+
 
   }
 

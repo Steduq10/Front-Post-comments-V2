@@ -1,25 +1,32 @@
 
-<button type="button" (click)="goBack()">go back</button>
+<button  type="button" (click)="goBack()">go back</button>
+
+
 
 <ng-container *ngIf="!!post"> <h2>{{ post.title }}</h2></ng-container>
 
-<div class="insertInfo">
-  <label for="author">Title: </label>
-  <input type="text" [(ngModel)]="newAuthor" placeholder="Author">
+<div class="insertComment">
+  <h3>Write a comment</h3>
+ <!-- <label for="author">Title: </label>-->
+  <input class="control" type="text" [(ngModel)]="newAuthor" placeholder="Author">
 
-  <label for="content">Content: </label>
-  <input name="author" type="text" [(ngModel)]="newContent" placeholder="Content">
+ <!-- <label for="content">Content: </label> -->
+  <input class="control" name="author" type="text" [(ngModel)]="newContent" placeholder="Content">
 
-  <button type="button" (click)="createComment()">Create Comment</button>
+  <button class="button" type="button" (click)="createComment()">Create Comment</button>
 
 </div>
 
- <div *ngIf="post?.comments">
-  <div *ngFor="let comment of post?.comments">
-      <div class="card" style="width: 18rem;">
-          <div class="card-body">
-              <app-comment [comment]="comment"></app-comment>
+ <div class="main-container" *ngIf="post?.comments">
+  <div class="comment-container " *ngFor="let comment of post?.comments">
+          <div class="single-comment">
+              <!--<app-comment [comment]="comment"></app-comment>-->
+              <h3 >{{comment.content}}</h3>
+              <p >{{comment.author}}</p>
           </div>
-      </div>
+
   </div>
 </div>
+
+
+

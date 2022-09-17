@@ -1,67 +1,14 @@
-.posts {
-  margin: 0 0 2em 0;
-  list-style-type: none;
-  padding: 0;
-  width: 15em;
+p{
+  color: #444;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: lighter;
+  font-size: 150%;
 }
 
-.posts li {
-  display: flex;
-}
-
-.posts button {
-  flex: 1;
-  cursor: pointer;
-  position: relative;
-  left: 0;
-  background-color: #EEE;
-  margin: .5em;
-  padding: 0;
-  border-radius: 4px;
-  display: flex;
-  align-items: stretch;
-  height: 1.8em;
-}
-
-.posts button:hover {
-  color: #2c3a41;
-  background-color: #e6e6e6;
-  left: .1em;
-}
-
-.posts button:active {
-  background-color: #525252;
-  color: #fafafa;
-}
-
-.posts button.selected {
-  background-color: black;
-  color: white;
-}
-
-.posts button.selected:hover {
-  background-color: #505050;
-  color: white;
-}
-
-.posts button.selected:active {
-  background-color: black;
-  color: white;
-}
-
-.posts .title {
-  display: inline-block;
-  font-size: small;
-  color: white;
-  padding: 0.8em 0.7em 0 0.7em;
-  background-color: #405061;
-  line-height: 1em;
-  margin-right: .8em;
-  border-radius: 4px 0 0 4px;
-}
-
-.hposts .author {
-  align-self: center;
+h3 {
+  color: #369;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 250%;
 }
 
 .main-container{
@@ -132,4 +79,39 @@
 .author.selected:active {
   background-color: black;
   color: white;
+}
+
+
+.insertComment{
+  width: 400px;
+  background: #24303c;
+  padding: 30px;
+  margin:auto;
+  margin-top: 100px;
+  border-radius: 4px;
+  font-family: "calibri";
+  color: white;
+  box-shadow: 7px 13px 37px #000;
+  }
+
+.insertComment h3{
+  font-size: 22px;
+  margin-bottom: 20px;
+  color:white
+}
+
+.control{
+  width: 100%;
+  background: #24303c;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  border:1px solid #1f53c5;
+  font-family: 'calibri';
+  font-size: 18px;
+  color: white;
+}
+
+.button{
+  text-align: center;
 }

@@ -25,3 +25,6 @@ export type AddCommentCommand = {
   content: string
 }
 
+export type Token = {
+  token: string
+}

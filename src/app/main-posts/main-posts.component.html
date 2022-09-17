@@ -1,13 +1,13 @@
 
 <div class="insertInfo">
-  <label for="title">Title: </label>
-  <input type="text" [(ngModel)]="newTitle" placeholder="Title">
+  <!--<label for="title">Title: </label>-->
+  <input class="control" type="text" [(ngModel)]="newTitle" placeholder="Title">
 
-  <label for="author">Author: </label>
-  <input name="author" type="text" [(ngModel)]="newAuthor" placeholder="Author">
+  <!--<label for="author">Author: </label>-->
+  <input class="control" name="author" type="text" [(ngModel)]="newAuthor" placeholder="Author">
 
  <!-- <button type="button" (click)="submitPost()">Create POST</button>-->
-  <button type="button" (click)="createPost()">Create POST</button>
+  <button class="button" type="button" (click)="createPost()">Create POST</button>
 
 </div>
 <div class=main-container>
@@ -16,11 +16,11 @@
       <!--<app-single-post [postView] = "post"></app-single-post>-->
 
       <div class="single-post-content">
-        <h3 class="post-title">Title: {{post.title}}</h3>
-            <p class="post-author"> Author: {{post.author}}</p>
+        <h3 class="post-title"> {{post.title}}</h3>
+            <p class="post-author">  {{post.author}}</p>
             <a [routerLink]="['detail', post.id]">
-              <span class="author">Go Inside!</span>
-
+             <!-- <span class="author">Go Inside!</span>-->
+              <button type="button" >Go Inside!</button>
             </a>
 
     </div>

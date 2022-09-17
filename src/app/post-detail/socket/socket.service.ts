@@ -10,14 +10,14 @@ export class SocketService {
   constructor() { }
 
   connetGeneralPostSpace(): WebSocketSubject<PostView>{
-    return webSocket('ws://localhost:8082/retrieve/mainSpace')
-  //  return webSocket('WSS://safe-peak-29242.herokuapp.com/retrieve/mainSpace')
+   // return webSocket('ws://localhost:8082/retrieve/mainSpace')
+    return webSocket('WSS://tranquil-bayou-17075.herokuapp.com/retrieve/mainSpace')
   }
 
 
   connectToDetailSpace(postId:string): WebSocketSubject<CommentView>{
-    return webSocket(`ws://localhost:8082/retrieve/${postId}`);
-  //  return webSocket(`WSS://safe-peak-29242.herokuapp.com/retrieve/${postId}`);
+   // return webSocket(`ws://localhost:8082/retrieve/${postId}`);
+     return webSocket(`WSS://tranquil-bayou-17075.herokuapp.com/retrieve/${postId}`);
   }
 
 }

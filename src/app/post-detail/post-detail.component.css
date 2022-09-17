@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+
+.insertComment{
+  width: 400px;
+  background: #24303c;
+  padding: 30px;
+  margin:auto;
+  margin-top: 100px;
+  border-radius: 4px;
+  font-family: "calibri";
+  color: white;
+  box-shadow: 7px 13px 37px #000;
+  }
+
+.insertComment h3{
+  font-size: 22px;
+  margin-bottom: 20px;
+  color:white
+}
+
+.control{
+  width: 100%;
+  background: #24303c;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+  border:1px solid #1f53c5;
+  font-family: 'calibri';
+  font-size: 18px;
+  color: white;
+}
+
+
+
+.main-container{
+  width: 50%;
+  max-width: 500px;
+  margin: auto;
+  padding: 40px 0;
+  gap: 20px;
+}
+
+.comment-container{
+
+   display: grid;
+   grid-template-columns: 1fr ;
+   gap: 20px;
+ }
+
+ .single-comment{
+   border-radius: 10px;
+   min-height: 200px;
+   padding: 20px;
+   position: relative;
+   background-size: cover;
+   background-position: center center;
+   background-color: #D4E6F1 ;
+
+
+ }
+
+ p{
+  color: #444;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: lighter;
+  font-size: 100%;
+}
+
+h3 {
+  color: #369;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 160%;
+}
+
+h2 {
+  color: #24303c;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 250%;
+}
+
+

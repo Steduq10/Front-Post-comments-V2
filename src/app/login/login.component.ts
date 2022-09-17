@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../auth service/auth.service';
 import { PostService } from '../post.service';
 import { StateService } from '../state/state.service';
-
+import {catchError, of} from 'rxjs';
 
 
 @Component({
@@ -22,17 +22,20 @@ export class LoginComponent implements OnInit {
   async loginWithGoogle(){
     const response = await this.authService.logInWithGoogle()
     if(response){
-      const token = await this.service.login({
+     // const token = await this.service.login({
+      this.service.login({
         username: response.user.email,
         password: response.user.email
-      }).subscribe(token => {
+      })
+     // .pipe(catchError(err => of(err)))
+      .subscribe(token => {
         console.log(token);
         this.state.state.next({
           logedIn: true,
           authenticatedPerson:response,
-          token //En caso de funcionar revisar esta línea
+          token: token.token
          })
-         this.router.navigateByUrl('/main')
+         this.router.navigateByUrl('')
       })
 
       }
