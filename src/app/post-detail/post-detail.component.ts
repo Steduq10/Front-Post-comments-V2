@@ -53,6 +53,7 @@ export class PostDetailComponent implements OnInit, OnDestroy {
       }
       validationResult = true
     })
+
     return validationResult;
   }
 

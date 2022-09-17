@@ -64,8 +64,8 @@ export class MainPostsComponent implements OnInit, OnDestroy {
     })
   }
 
-/*
-  submitPost(){
+
+ /* submitPost(){
     const newCommand: CreatePostCommand = {
       postId: Math.floor(Math.random() * 100000).toString(),
       title: this.newTitle,
@@ -83,6 +83,8 @@ export class MainPostsComponent implements OnInit, OnDestroy {
       title: this.newTitle,
       author: this.newAuthor
     }
+    console.log(this.availableState.token);
+
     this.submitPosts(newPost, this.availableState.token);
   }
 
